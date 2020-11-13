@@ -5,11 +5,11 @@ Study the code below and explain in your own words why nested function can acces
 const external = "I'm outside the function";
 
 function myFunction() {
-  console.log(external);
+  // console.log(external);
   const internal = "Hello! I'm inside myFunction!";
 
   function nestedFunction() {
-    console.log(internal);
+    // console.log(internal);
   }
   nestedFunction();
 }
@@ -29,7 +29,7 @@ function summation(num) {
   let result = 0;
   for(let i = 1; i <= num; i++){
     result += i;
-    console.log(num);
+    console.log(i);
   }
   return result;
   }
@@ -58,25 +58,13 @@ const zooAnimals = [
   */
   function animalNames(data){
     const displayNames = [];
-    data.forEach(item => displayNames.push({ name: item.animal_name, scientific: item.scientific_name} ));
+    data.forEach(item => displayNames.push(`name: ${item.animal_name}, scientific: ${item.scientific_name}`));
     return displayNames;
+
 }
 
   console.log('Task 2-1', animalNames(zooAnimals));
     
-  //   const displayNames = data.map(function(item){
-      
-  //     return {Name: item.animal_name, Scientific: item.scientific_name};
-  // });
-  //   return displayNames;
-
-//   const displayNames = data.map(item => ({name: item.animal_name, scientific: item.scientific_name}));
-//   return displayNames;
-  // }
-
-
-
-
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoos need a list of all their animal's names (animal_name only) converted to lower case. Using map, create a new array of strings named lowCaseAnimalNames, each string following this pattern: "jackal, asiatic". Log the resut.
@@ -197,14 +185,20 @@ CuboidMaker.prototype.surfaceArea = function(){
   Create a cuboid object that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
-const cuboid = new CuboidMaker(4, 5, 5);
+// const cuboid = new CuboidMaker(4, 5, 5);
+
+const cuboid = new CuboidMaker({
+  length: 4,
+  width: 5,
+  height: 5,
+})
 
 
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-console.log(cuboid.volume()); // 100
-console.log(cuboid.surfaceArea()); // 130
+// console.log(cuboid.volume()); // 100
+// console.log(cuboid.surfaceArea()); // 130
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
@@ -236,8 +230,8 @@ const cuboidTwo = new CuboidMakerTwo({
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-console.log(cuboidTwo.volume()); // 100
-console.log(cuboidTwo.surfaceArea()); // 130
+// console.log(cuboidTwo.volume()); // 100
+// console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
@@ -246,6 +240,29 @@ console.log(cuboidTwo.surfaceArea()); // 130
 // 🦄 💪 Stretch Task: Extend the base class CuboidMaker with a sub class called CubeMaker.  Find out the formulas for volume and surface area for cubes and create those methods using the dimension properties from CuboidMaker.  Test your work by logging out your volume and surface area. 🦄 💪
   
 
+class CubeMaker extends CuboidMakerTwo{
+  constructor(traits){
+    super(traits);
+  }
+  cubeVolume(){
+    const cubeVol = this.length * this.width * this.height;
+    return cubeVol;
+  }
+  cubeSurfaceArea(){
+    const cubeSA = 6 * (this.length * this.length);
+    return cubeSA;
+  }
+}
+
+const cubeOne = new CubeMaker({
+  length: 10,
+  width: 10,
+  height: 10,
+});
+
+
+console.log('Stretch', cubeOne.volume());
+console.log('Stretch', cubeOne.cubeSurfaceArea());
 
 
 
